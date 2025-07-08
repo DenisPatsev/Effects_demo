@@ -7,7 +7,7 @@ Shader "Custom/FresnelEffect"
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
         _FresnelPower("Fresnel Power", Range(0, 4)) = 1
-        [HDR]_FresnelColor("Fresnel color", Color) = (1,1,1,1)
+//       [HDR] _FresnelColor("Fresnel Color", Color) = (1,1,1,1)
     }
     SubShader
     {
@@ -17,7 +17,7 @@ Shader "Custom/FresnelEffect"
         LOD 200
 
         CGPROGRAM
-        #pragma surface surf Lambert nometa noforwardadd alpha:fade
+        #pragma surface surf Standard nometa alpha:fade
 
         sampler2D _MainTex;
 
@@ -30,20 +30,26 @@ Shader "Custom/FresnelEffect"
 
         half _Glossiness;
         half _Metallic, _FresnelPower;
-        fixed4 _Color, _FresnelColor;
+        fixed4 _Color;
 
         UNITY_INSTANCING_BUFFER_START(Props)
-            // put more per-instance properties here
+            UNITY_DEFINE_INSTANCED_PROP(fixed4, _FresnelColor)
         UNITY_INSTANCING_BUFFER_END(Props)
 
-        void surf (Input IN, inout SurfaceOutput o)
+        void surf (Input IN, inout SurfaceOutputStandard o)
         {
             fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
             o.Albedo = c.rgb;
             float fresnel = dot(IN.worldNormal, IN. viewDir);
             fresnel = saturate(1 - fresnel);
             fresnel = pow(fresnel, _FresnelPower);
-            float3 fresnelColor = _FresnelColor * fresnel;
+
+            #if dynamic
+            #endif
+            
+            float3 fresnelColor = UNITY_ACCESS_INSTANCED_PROP(Props, _FresnelColor) * fresnel;
+            o.Smoothness = _Glossiness;
+            o.Metallic = _Metallic;
             o.Emission += fresnelColor;
             o.Alpha = c.a;
         }
