@@ -5708,8 +5708,8 @@ MonoBehaviour:
   rotationSpeed: 22
   manualRotationSpeed: 60
   minZoom: 0.15
-  isManualControl: 1
-  cameraOffset: {x: 0, y: 3, z: -8}
+  isManualControl: 0
+  cameraOffset: {x: 0, y: 6, z: -8}
 --- !u!4 &1645249664
 Transform:
   m_ObjectHideFlags: 0
