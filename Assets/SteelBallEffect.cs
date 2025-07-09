@@ -6,6 +6,7 @@ public class SteelBallEffect : MonoBehaviour
     [SerializeField] private Renderer _renderer;
     [SerializeField] private ParticleSystem _groundDamage;
     [SerializeField] private ParticleSystem _smoke;
+    [SerializeField] private ParticleSystem _dust;
 
     [ColorUsage(true, true)] [SerializeField]
     private Color _startColor;
@@ -26,6 +27,7 @@ public class SteelBallEffect : MonoBehaviour
     {
         _groundDamage.Play();
         _smoke.Play();
+        _dust.Play();
     }
 
     private void FixedUpdate()
