@@ -58,7 +58,7 @@ public class CameraController : MonoBehaviour
 
     private void CalculateDynamicZoomedRotation()
     {
-        float zMultiplier = 1 - (1 - (Mathf.Abs(_rotationY) / 90f));
+        float zMultiplier = (Mathf.Abs(_rotationY) / 90f);
 
         zMultiplier = Mathf.Clamp(zMultiplier, minZoom, 1);
 

@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DissolveMaterial
-  m_Shader: {fileID: 4800000, guid: 419480eefbbe91b468cbe71be5810386, type: 3}
+  m_Name: NoiseBuilding
+  m_Shader: {fileID: 4800000, guid: 9bde4790fa7f61a438281ce5fbed8e8f, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -16,7 +16,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 3000
   stringTagMap: {}
   disabledShaderPasses: []
   m_LockedProperties: 
@@ -39,20 +39,12 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _DissloveTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DissolveTex:
-        m_Texture: {fileID: 2800000, guid: 0ade8512c426ddb468155a54c7c0c39c, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _EmissionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 75b7e0f2b4f51f745982eae34b8f89ca, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -69,31 +61,33 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BorderWidth: 0.0305
+    - _BackgroundAlpha: 1
+    - _BuildProgress: 0
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
-    - _DissolveSpeed: 3
-    - _DissolveThreshold: 0.079
     - _DstBlend: 0
+    - _EdgeSharpness: 2.99
+    - _EdgeSmoothness: 0.059
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
-    - _NoiseScale: 34.2
+    - _NoiseScale: 6.1
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _PixelSize: 17
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _BorderColo: {r: 1, g: 1, b: 1, a: 1}
-    - _BorderColor: {r: 2.528101, g: 0.7019757, b: 0, a: 1}
+    - _BaseColor: {r: 0, g: 0, b: 0, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _MainColor: {r: 1, g: 1, b: 1, a: 1}
+    - _NoiseColor: {r: 0.53396225, g: 1, b: 0.9957695, a: 1}
+    - _PixelColor: {r: 0, g: 0.865751, b: 3.482202, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
