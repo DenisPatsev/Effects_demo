@@ -17,10 +17,16 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
-        camera.transform.position = cameraPivot.transform.position + cameraOffset;
-
         if (isManualControl)
+        {
             CalculateDynamicZoomedRotation();
+        }
+        else
+        {
+            cameraOffset = new Vector3(0, 5, -6);
+        }
+
+        camera.transform.position = cameraPivot.transform.position + cameraOffset;
     }
 
     private void Update()
