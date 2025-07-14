@@ -8,7 +8,7 @@ Shader "Custom/Unlit/Hologram"
         _Color("Hologram", Color) = (0, 1, 0, 1)
         _Transparency("Transparency", Range(0, 1)) = 1
         _ScrollSpeed("Scroll Speed", Range(0, 5)) = 1
-        _NoiseScale("NoiseScale", Range(0, 0.5)) = 1
+        _NoiseDensity("Noise Density", Range(0, 0.5)) = 1
         _NoiseSize("NoiseSize", Range(0,400)) = 0.2
         _FresnelPower("FresnelPower", Range(0, 10)) = 1
         _FresnelIntensity("FresnelIntensity", Range(0, 20)) = 1
@@ -54,7 +54,7 @@ Shader "Custom/Unlit/Hologram"
             float4 _MainTex_ST;
             float4 _HologramTex_ST;
             float4 _Color, _MainColor;
-            float _Transparency, _ScrollSpeed, _NoiseScale, _NoiseSize, _FresnelPower, _FresnelIntensity;
+            float _Transparency, _ScrollSpeed, _NoiseDensity, _NoiseSize, _FresnelPower, _FresnelIntensity;
 
             float rand(float2 uv)
             {
@@ -69,13 +69,14 @@ Shader "Custom/Unlit/Hologram"
                 o.uv2 = TRANSFORM_TEX(v.uv2, _HologramTex);
                 o.worldNormal = UnityObjectToWorldNormal(v.normal);
                 o.viewDir = normalize(WorldSpaceViewDir(v.vertex));
+
                 return o;
             }
 
             fixed4 frag(v2f i) : SV_Target
             {
                 float2 pixelatedUV = floor(i.uv * _NoiseSize) / _NoiseSize;
-                float randomValue = rand(pixelatedUV) * _NoiseScale;
+                float randomValue = rand(pixelatedUV * _Time.x) * _NoiseDensity;
                 fixed4 col = tex2D(_MainTex, i.uv) * _MainColor;
 
                 float fresnel = dot(i.worldNormal, i.viewDir);
